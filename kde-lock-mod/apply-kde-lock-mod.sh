@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Builds a user-level lock screen package that adds the running kernel version
-# to the top-right corner, and points the KDE screen locker at it.
+# to the top-right corner, and points the KDE screen locker at it through a
+# systemd drop-in that sets PLASMA_DEFAULT_SHELL for kwin / ksmserver only.
 # System files are never modified. Re-run after Plasma updates to refresh the copy.
 set -euo pipefail
 
@@ -8,6 +9,9 @@ SYSTEM_LOCKSCREEN=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/locks
 PKG_ID=org.kde.plasma.desktop.kernellock
 PKG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/plasma/shells/$PKG_ID"
 UI="$PKG_DIR/contents/lockscreen/LockScreenUi.qml"
+SYSTEMD_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
+# kwin launches the greeter on Wayland, ksmserver on X11.
+UNITS=(plasma-kwin_wayland.service plasma-ksmserver.service)
 
 [[ -d "$SYSTEM_LOCKSCREEN" ]] || { echo "Not found: $SYSTEM_LOCKSCREEN" >&2; exit 1; }
 
@@ -77,7 +81,12 @@ mkdir -p "$(dirname "$PKG_DIR")"
 mv "$tmpdir" "$PKG_DIR"
 trap - EXIT
 
-kwriteconfig6 --file kscreenlockerrc --group Greeter --key Theme "$PKG_ID"
+for unit in "${UNITS[@]}"; do
+    mkdir -p "$SYSTEMD_DIR/$unit.d"
+    printf '[Service]\nEnvironment=PLASMA_DEFAULT_SHELL=%s\n' "$PKG_ID" > "$SYSTEMD_DIR/$unit.d/kde-lock-mod.conf"
+done
+systemctl --user daemon-reload 2>/dev/null || true
 
 echo "Override installed in $PKG_DIR"
-echo "Test with: /usr/lib/kscreenlocker_greet --testing"
+echo "Log out and back in for the lock screen to pick it up."
+echo "Test now with: PLASMA_DEFAULT_SHELL=$PKG_ID /usr/lib/kscreenlocker_greet --testing"

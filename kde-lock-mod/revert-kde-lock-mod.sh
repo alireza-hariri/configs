@@ -5,8 +5,17 @@ set -euo pipefail
 
 PKG_ID=org.kde.plasma.desktop.kernellock
 PKG_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/plasma/shells/$PKG_ID"
+SYSTEMD_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/systemd/user"
+UNITS=(plasma-kwin_wayland.service plasma-ksmserver.service)
 SYSTEM_UI=/usr/share/plasma/shells/org.kde.plasma.desktop/contents/lockscreen/LockScreenUi.qml
 
+for unit in "${UNITS[@]}"; do
+    rm -f "$SYSTEMD_DIR/$unit.d/kde-lock-mod.conf"
+    rmdir "$SYSTEMD_DIR/$unit.d" 2>/dev/null || true
+done
+systemctl --user daemon-reload 2>/dev/null || true
+
+# Older versions of the apply script set this (unused) key.
 if [[ "$(kreadconfig6 --file kscreenlockerrc --group Greeter --key Theme)" == "$PKG_ID" ]]; then
     kwriteconfig6 --file kscreenlockerrc --group Greeter --key Theme --delete
 fi
