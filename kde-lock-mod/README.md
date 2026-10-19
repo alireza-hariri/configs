@@ -10,24 +10,6 @@ and package updates won't overwrite it.
 
 ## Install
 
-Download the scripts (no need to clone the repo):
-
-```bash
-mkdir -p ~/.local/bin
-base=https://raw.githubusercontent.com/alireza-hariri/configs/main/kde-lock-mod
-curl -fsSL -o ~/.local/bin/apply-kde-lock-mod.sh  "$base/apply-kde-lock-mod.sh"
-curl -fsSL -o ~/.local/bin/revert-kde-lock-mod.sh "$base/revert-kde-lock-mod.sh"
-chmod +x ~/.local/bin/{apply,revert}-kde-lock-mod.sh
-```
-
-Apply the mod:
-
-```bash
-~/.local/bin/apply-kde-lock-mod.sh
-```
-
-Or as a one-off, without keeping the script around:
-
 ```bash
 curl -fsSL https://raw.githubusercontent.com/alireza-hariri/configs/main/kde-lock-mod/apply-kde-lock-mod.sh | bash
 ```
@@ -44,17 +26,13 @@ Preview the lock screen without locking your session (unlock with your password)
 
 The override is a snapshot of the lock screen from the Plasma version it was
 built with. If a later update changes the lock screen, the locker may fall back
-to its plain built-in screen (you can still unlock normally). Re-run the apply
-script to rebuild the copy from the new files:
-
-```bash
-~/.local/bin/apply-kde-lock-mod.sh
-```
+to its plain built-in screen (you can still unlock normally). Run the install
+command again to rebuild the copy from the new files.
 
 ## Uninstall
 
 ```bash
-~/.local/bin/revert-kde-lock-mod.sh
+curl -fsSL https://raw.githubusercontent.com/alireza-hariri/configs/main/kde-lock-mod/revert-kde-lock-mod.sh | bash
 ```
 
 This removes the override and the `kscreenlockerrc` setting. If an older version
