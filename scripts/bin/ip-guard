@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# ip-guard - run a command only when the public IPv4 is on an allow-list.
+# Usage: ip-guard <command> [args...]      e.g. ip-guard claude
+#        ip-guard --add                    add the current IP to the list
+#        ip-guard --show                   print current IP and the list
+# Allowed IPs: ~/.config/ip-guard/allowed-ips (one per line, # comments).
+set -uo pipefail
+
+LIST="${XDG_CONFIG_HOME:-$HOME/.config}/ip-guard/allowed-ips"
+
+current_ip() {
+    local ip p
+    for p in https://icanhazip.com https://api.ipify.org https://ifconfig.me/ip; do
+        ip="$(curl -4 -fs --max-time 5 "$p" | tr -d '[:space:]')" || continue
+        [[ "$ip" =~ ^[0-9]+(\.[0-9]+){3}$ ]] && { printf '%s' "$ip"; return 0; }
+    done
+    return 1
+}
+
+allowed() { [[ -f "$LIST" ]] && grep -v '^\s*#' "$LIST" | tr -d '[:blank:]' | grep -qxF "$1"; }
+
+case "${1:-}" in
+    ""|-h|--help) sed -n '2,6p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    --show)
+        echo "current: $(current_ip || echo unknown)"
+        echo "allowed ($LIST):"; grep -v '^\s*#' "$LIST" 2>/dev/null | sed 's/^/  /'
+        exit 0 ;;
+    --add)
+        ip="$(current_ip)" || { echo "ip-guard: could not determine public IP" >&2; exit 1; }
+        mkdir -p "${LIST%/*}"
+        allowed "$ip" || echo "$ip" >> "$LIST"
+        echo "allowed: $ip"
+        exit 0 ;;
+esac
+
+echo "Checking IP..." >&2
+ip="$(current_ip)" || { echo "ip-guard: could not determine public IP, not starting $1" >&2; exit 1; }
+if ! allowed "$ip"; then
+    echo "ip-guard: $ip is not in $LIST, not starting $1 (ip-guard --add to allow it)" >&2
+    exit 1
+fi
+exec "$@"

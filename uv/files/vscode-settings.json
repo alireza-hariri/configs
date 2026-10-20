@@ -1,0 +1,121 @@
+{
+    "window.zoomLevel": 1.2,
+    "files.autoSave": "onFocusChange",
+    "ruff.importStrategy": "useBundled",
+    "ruff.lineLength": 120,
+    "roo-cline.allowedCommands": [
+        "git log",
+        "git diff",
+        "git show"
+    ],
+    "roo-cline.deniedCommands": [],
+    "git.confirmSync": false,
+    "[python]": {
+        "editor.defaultFormatter": null
+    },
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
+    "continue.enableTabAutocomplete": true,
+    "workbench.editor.empty.hint": "hidden",
+    "continue.showInlineTip": false,
+    "python-envs.terminal.autoActivationType": "off",
+    "go.terminal.activateEnvironment": false,
+    "[html]": {
+        "editor.suggest.insertMode": "replace"
+    },
+    "ruff.format.backend": "uv",
+    "ruff.configurationPreference": "filesystemFirst",
+    "llama-vscode.completion_models_list": [
+        {
+            "name": "Qwen2.5-Coder-1.5B-Q8_0-GGUF (<= 8GB VRAM)",
+            "localStartCommand": "llama-server --fim-qwen-1.5b-default -ngl 99 --port 8012",
+            "endpoint": "http://localhost:8012",
+            "aiModel": "",
+            "isKeyRequired": false
+        },
+        {
+            "name": "Qwen2.5-Coder-3B-Q8_0-GGUF (<= 16GB VRAM)",
+            "localStartCommand": "llama-server --fim-qwen-3b-default -ngl 99 --port 8012",
+            "endpoint": "http://localhost:8012",
+            "aiModel": "",
+            "isKeyRequired": false
+        },
+        {
+            "name": "Qwen2.5-Coder-7B-Q8_0-GGUF (> 16GB VRAM)",
+            "localStartCommand": "llama-server --fim-qwen-7b-default -ngl 99 --port 8012",
+            "endpoint": "http://localhost:8012",
+            "aiModel": "",
+            "isKeyRequired": false
+        },
+        {
+            "name": "Qwen2.5-Coder-1.5B-Q8_0-GGUF (CPU Only)",
+            "localStartCommand": "llama-server -hf ggml-org/Qwen2.5-Coder-1.5B-Q8_0-GGUF -ub 1024 -b 1024 -dt 0.1 --ctx-size 0 --cache-reuse 256 --port 8012",
+            "endpoint": "http://localhost:8012",
+            "aiModel": "",
+            "isKeyRequired": false
+        },
+        {
+            "name": "codex-5.1-mini",
+            "localStartCommand": "",
+            "endpoint": "https://llm-proxy.open8.ir/openrouter/",
+            "aiModel": "openai/gpt-5.1-codex-mini",
+            "isKeyRequired": true
+        }
+    ],
+    "llama-vscode.tool_run_terminal_command_enabled": false,
+    "llama-vscode.tool_search_source_enabled": false,
+    "llama-vscode.tool_read_file_enabled": false,
+    "llama-vscode.tool_list_directory_enabled": false,
+    "llama-vscode.tool_regex_search_enabled": false,
+    "llama-vscode.tool_delete_file_enabled": false,
+    "llama-vscode.tool_get_diff_enabled": false,
+    "llama-vscode.tool_edit_file_enabled": false,
+    "llama-vscode.tool_ask_user_enabled": false,
+    "llama-vscode.tool_custom_tool_enabled": false,
+    "llama-vscode.tool_custom_eval_tool_enabled": false,
+    "llama-vscode.tool_llama_vscode_help_enabled": false,
+    "llama-vscode.tool_update_todo_list_enabled": false,
+    "llama-vscode.tool_delegate_task_enabled": false,
+    "llama-vscode.tool_create_agent_enabled": false,
+    "roo-cline.debug": false,
+    "llama-vscode.enabled": false,
+    "llama-vscode.rag_enabled": false,
+    "llama-vscode.ask_upgrade_llamacpp_hours": 72000,
+    "terminal.integrated.initialHint": false,
+    "atlascode.jira.enabled": true,
+    "atlascode.jira.explorer.refreshInterval": 9,
+    "atlascode.jira.statusbar.enabled": false,
+    "atlascode.bitbucket.enabled": false,
+    "continue.enableNextEdit": false,
+    "terminal.integrated.scrollback": 10000,
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "rust-analyzer.diagnostics.enable": false,
+    "rust-analyzer.inlayHints.chainingHints.enable": false,
+    "rust-analyzer.inlayHints.typeHints.enable": false,
+    "python.createEnvironment.trigger": "off",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false,
+        "json": false
+    },
+    "cSpell.userWords": [
+        "agentic",
+        "alireza",
+        "behaviour",
+        "EFARDA",
+        "excdump",
+        "hariri",
+        "KAVENEGAR",
+        "Maktab",
+        "mimo",
+        "OPENROUTER",
+        "pytest",
+        "venv",
+        "ZARINPAL",
+        "فارسی"
+    ],
+    "terminal.integrated.drawBoldTextInBrightColors": false,
+    "terminal.integrated.shellIntegration.history": 1000,
+    "terminal.integrated.stickyScroll.enabled": false
+}

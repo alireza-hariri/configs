@@ -12,7 +12,7 @@ itself is unaffected. No sudo is needed, and package updates won't overwrite it.
 ## Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/alireza-hariri/configs/main/kde-lock-mod/apply-kde-lock-mod.sh | bash
+curl -fsSL https://raw.githubusercontent.com/alireza-hariri/configs/main/kde/lock-mod/apply-kde-lock-mod.sh | bash
 ```
 
 Then log out and back in, so kwin restarts with the new environment.
@@ -35,7 +35,7 @@ command again to rebuild the copy from the new files.
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/alireza-hariri/configs/main/kde-lock-mod/revert-kde-lock-mod.sh | bash
+curl -fsSL https://raw.githubusercontent.com/alireza-hariri/configs/main/kde/lock-mod/revert-kde-lock-mod.sh | bash
 ```
 
 This removes the override and the systemd drop-ins (log out and back in afterwards). If an older version

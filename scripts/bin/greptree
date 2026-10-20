@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+# greptree - find files matching a glob and show them as a tree.
+# Usage: greptree <glob> [directory ...]
+set -uo pipefail
+
+RED='\033[0;31m' YELLOW='\033[1;33m' CYAN='\033[0;36m' NC='\033[0m'
+
+show_help() {
+    echo -e "${CYAN}greptree${NC} - find files matching a glob and show them as a tree"
+    echo
+    echo -e "${YELLOW}Usage:${NC}  greptree <glob> [directory ...]   (default: current folder)"
+    echo
+    echo -e "${YELLOW}Examples:${NC}"
+    echo "  greptree '*.py'              # all Python files"
+    echo "  greptree '*.js' src lib      # JS files in src/ and lib/"
+    echo "  greptree 'Makefile'          # every Makefile"
+    echo
+    echo "Uses rg (ripgrep) to find files, so .gitignore is respected, and tree to draw."
+}
+
+check_deps() {
+    local missing=() c
+    for c in rg tree; do command -v "$c" >/dev/null || missing+=("$c"); done
+    if (( ${#missing[@]} )); then
+        echo -e "${RED}Missing: ${missing[*]}${NC} (Arch: pacman -S ripgrep tree)" >&2
+        exit 1
+    fi
+}
+
+main() {
+    if (( $# == 0 )) || [[ "$1" == -h || "$1" == --help ]]; then
+        show_help
+        exit 0
+    fi
+    check_deps
+
+    local pattern="$1"; shift
+    local dirs=("$@")
+    (( ${#dirs[@]} )) || dirs=(.)
+
+    local files
+    files="$(rg --files --glob "$pattern" -- "${dirs[@]}" 2>/dev/null)"
+    if [[ -z "$files" ]]; then
+        echo -e "${YELLOW}No files matching '$pattern' in ${dirs[*]}${NC}"
+        exit 0
+    fi
+    printf '%s\n' "$files" | tree --fromfile -C
+}
+
+main "$@"

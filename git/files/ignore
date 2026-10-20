@@ -1,0 +1,7 @@
+# Global gitignore: patterns here apply to every repository on this machine.
+# Git reads this file by default (~/.config/git/ignore), no setting needed.
+#
+# Examples:
+# .DS_Store
+# *.swp
+# .env

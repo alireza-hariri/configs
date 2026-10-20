@@ -1,0 +1,11 @@
+# uv tools to install: <tool name> [install source, default = name]
+cookiecutter
+excdump
+git-filter-repo
+hf
+jupytext
+notebook
+poethepoet
+pz
+ruff
+specify-cli git+https://github.com/github/spec-kit.git

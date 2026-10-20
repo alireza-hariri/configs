@@ -1,0 +1,13 @@
+# Managed by configs/git (lfs). Included from ~/.gitconfig.
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[lfs]
+	concurrenttransfers = 3
+# Hugging Face Xet storage, used by git-xet for large model repos.
+[lfs "customtransfer.xet"]
+	path = git-xet
+	args = transfer
+	concurrent = true

@@ -1,0 +1,27 @@
+# KDE global shortcuts set by the 'shortcuts' feature (only ones that differ from Plasma defaults).
+# component | action | component friendly name | action friendly name | Qt key codes, one per shortcut ("-" = none) | readable
+KDE Keyboard Layout Switcher|Switch keyboard layout to English (US)|Keyboard Layout Switcher|Switch keyboard layout to English (US)|402653233|Meta+Alt+1
+KDE Keyboard Layout Switcher|Switch keyboard layout to Persian|Keyboard Layout Switcher|Switch keyboard layout to Persian|402653234|Meta+Alt+2
+KDE Keyboard Layout Switcher|Switch to Next Keyboard Layout|Keyboard Layout Switcher|Switch to Next Keyboard Layout|268435488|Meta+Space
+kwin|Expose|KWin|Toggle Present Windows (Current desktop)|83886136|Ctrl+F9
+kwin|ExposeAll|KWin|Toggle Present Windows (All desktops)|83886137 16777390|Ctrl+F10, Launch (C)
+kwin|ExposeClass|KWin|Toggle Present Windows (Window class)|83886134|Ctrl+F7
+kwin|Switch One Desktop to the Left|KWin|Switch One Desktop to the Left|285212690 352321554 134217772|Meta+Left, Meta+Ctrl+Left, Alt+,
+kwin|Switch One Desktop to the Right|KWin|Switch One Desktop to the Right|352321556 285212692 134217774|Meta+Ctrl+Right, Meta+Right, Alt+.
+kwin|Switch to Desktop 1|KWin|Switch to Desktop 1|83886128|Ctrl+F1
+kwin|Switch to Desktop 2|KWin|Switch to Desktop 2|83886129|Ctrl+F2
+kwin|Switch to Desktop 3|KWin|Switch to Desktop 3|83886130|Ctrl+F3
+kwin|Switch to Desktop 4|KWin|Switch to Desktop 4|83886131|Ctrl+F4
+kwin|Walk Through Windows|KWin|Walk Through Windows|150994945|Alt+Tab
+kwin|Walk Through Windows (Reverse)|KWin|Walk Through Windows (Reverse)|184549377|Alt+Shift+Tab
+kwin|Walk Through Windows of Current Application|KWin|Walk Through Windows of Current Application|134217824|Alt+`
+kwin|Walk Through Windows of Current Application (Reverse)|KWin|Walk Through Windows of Current Application (Reverse)|134217854|Alt+~
+kwin|Window Maximize|KWin|Maximize Window|285212694 285212691|Meta+PgUp, Meta+Up
+kwin|Window Minimize|KWin|Minimize Window|285212695 285212693|Meta+PgDown, Meta+Down
+kwin|Window Quick Tile Bottom|KWin|Quick Tile Window to the Bottom|-|none
+kwin|Window Quick Tile Left|KWin|Quick Tile Window to the Left|-|none
+kwin|Window Quick Tile Right|KWin|Quick Tile Window to the Right|-|none
+kwin|Window Quick Tile Top|KWin|Quick Tile Window to the Top|-|none
+plasmashell|cycle-panels|plasmashell|Move keyboard focus between panels|-|none
+plasmashell|next activity|plasmashell|Walk through activities|268435521|Meta+A
+plasmashell|previous activity|plasmashell|Walk through activities (Reverse)|301989953|Meta+Shift+A

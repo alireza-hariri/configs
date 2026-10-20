@@ -1,0 +1,14 @@
+# Managed by configs/git (defaults). Included from ~/.gitconfig.
+[core]
+	# Ignore permission-bit changes (handy across Windows/WSL/USB drives).
+	fileMode = false
+[init]
+	defaultBranch = main
+[submodule]
+	recurse = true
+[status]
+	submoduleSummary = true
+[diff]
+	submodule = log
+[push]
+	recurseSubmodules = on-demand
